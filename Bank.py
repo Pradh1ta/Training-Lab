@@ -34,8 +34,8 @@ while looplogin:
     print()
     inputfirst = input("➜  Masukan Pilihan : ")
     clear()
-    while looplogin2:
-        if inputfirst == "1":
+    if inputfirst == "1":
+        while looplogin2:
             print("╔══════════════════════════════════════════════╗")
             print("║                 🔐 LOGIN 🔐                  ║")
             print("╚══════════════════════════════════════════════╝")
@@ -46,8 +46,9 @@ while looplogin:
             if inputlogin_username == data_user["username1"] and inputlogin_password == data_user["password1"]:
                     time.sleep(1)
                     print(Fore.GREEN + "! Login Berhasil")
+                    time.sleep(1)
+                    clear()
                     while loopmenu:
-                        clear()
                         print("╔══════════════════════════════════════════════╗")
                         print("║            🏦 BANK DIGITAL CLI 🏦            ║")
                         print("╚══════════════════════════════════════════════╝")
@@ -68,7 +69,7 @@ while looplogin:
                         if pilihan == "1":
                             clear()
                             print("╔══════════════════════════════════════════════╗")
-                            print("║               💳 CEK SALDO 💳              ║")
+                            print("║               💳 CEK SALDO 💳                ║")
                             print("╚══════════════════════════════════════════════╝")
                             print()
                             print("👤 Nama Nasabah : Azhar")
@@ -77,119 +78,164 @@ while looplogin:
                             input("➜  Ketik Enter untuk kembali" )
                         elif pilihan == "2":
                                 clear()
-                                print("╔══════════════════════════════════════════════╗")
-                                print("║               💸 TRANSFER 💸                 ║")
-                                print("╚══════════════════════════════════════════════╝")
-                                print()
-                                print("> Pilih Metode Transfer")
-                                print(" [1] 🏦 Transfer Antar Rekening")
-                                print(" [2] 🌐 Transfer Antar Bank")
-                                print(" [3] 📱 Top Up E-Wallet")
-                                print()
-                                print("══════════════════════════════════════════════")
-                                print()
-                                pilihan_trasnfer = input("➜  Pilih menu : ")
-                                if pilihan_trasnfer == "3":
-                                        clear()
-                                        print("╔══════════════════════════════════════════════╗")
-                                        print("║                ➕ TOP UP E-WALLET            ║")
-                                        print("╚══════════════════════════════════════════════╝")
-                                        print()
-                                        print("> Pilih E-Wallet Tujuan Anda")
-                                        print("[1] DANA")
-                                        print("[2] GoPay")
-                                        print("[3] ShopeePay")
-                                        print("[4] OVO")
-                                        print()
-                                        print("══════════════════════════════════════════════")
-                                        print()
-                                        ewallet = input("➜ Pilih E-Wallet : ")
-                                        if ewallet == "1":
-                                                clear()
-                                                print("╔══════════════════════════════════════════════╗")
-                                                print("║                   TOP UP DANA                 ║")
-                                                print("╚══════════════════════════════════════════════╝")
-                                                print()
-                                                print("📱 Masukkan nomor DANA tujuan")
-                                                print("Pastikan nomor yang dimasukkan sudah benar.")
-                                                print()
-                                                print("══════════════════════════════════════════════")
-                                                nomer_dana = input("➜ Masukan Nomor :")
-                                                if nomer_dana in data_nomer_ewallet:
-                                                    nama_tujuan = data_nomer_ewallet[nomer_dana]
-                                                    print("💡 Ketentuan Top Up Minimal top up Rp 10.000")
-                                                    nominal_dana = int(input("➜ Masukan Nominal Transfer :"))                                                 
-                                                    if nominal_dana >= 10000:
-                                                            clear()
-                                                            print("╔══════════════════════════════════════════════╗")
-                                                            print("║             📋 KONFIRMASI TOP UP             ║")
-                                                            print("╚══════════════════════════════════════════════╝")
-                                                            print()
-                                                            print("   E-Wallet      : GoPay")
-                                                            print(f"👤 Nama Tujuan   : {nama_tujuan}")
-                                                            print(f"📱 Nomor Tujuan  : {nomer_dana}")
-                                                            print(f"💰 Nominal Top Up: Rp {nominal_dana:,}")
-                                                            print()
-                                                            print("══════════════════════════════════════════════")
-                                                            print("! Pastikan data tujuan sudah benar.")
-                                                            print("! Transaksi yang berhasil tidak dapat dibatalkan.")
-                                                            print("══════════════════════════════════════════════")
-                                                            print()
-                                                            print("[1] ✅ Konfirmasi")
-                                                            print("[2] ❌ Batal")
-                                                            print()
-                                                            konfirmasi = input("➜ Masukan Pilihan : ")
-                                                            if konfirmasi == "1":
-                                                                clear()
-                                                                data_user["usersaldo1"] -= nominal_dana
-                                                                print("")
-                                                                print("==========================================")
-                                                                print("TRANSAKSI BERHASIL".center(40))
-                                                                print("==========================================")
-                                                                print("")
-                                                                print(f"Kirim Ke    : {nama_tujuan}")
-                                                                print(f"No. Tujuan  : {nomer_dana}")
-                                                                print(f"Nominal     : Rp{nominal_dana:,}")
-                                                                print("")
-                                                                print("------------------------------------------")
-                                                                print(f"Sisa Saldo Anda: Rp {data_user['usersaldo1']:,}".center(40))
-                                                                print("==========================================")
-                                                                print("> Ketik apapun Untuk Kembali ke Menu Utama")
-                                                                print("")
-                                                                input("➜  Masukan Pilihan : " )
-
-                                                                
-                                                                
-
-
-                                elif pilihan_trasnfer == "2":
+                                looptrasnfer = True
+                                while looptrasnfer:
                                     print("╔══════════════════════════════════════════════╗")
-                                    print("║            🌐 TRANSFER ANTAR BANK           ║")
+                                    print("║               💸 TRANSFER 💸                 ║")
                                     print("╚══════════════════════════════════════════════╝")
                                     print()
-                                    print("Pilih Bank:")
-                                    print()
-                                    print("[1] BCA")
-                                    print("[2] BRI")
-                                    print("[3] MANDIRI")
+                                    print("> Pilih Metode Transfer")
+                                    print(" [1] 🏦 Transfer Antar Rekening")
+                                    print(" [2] 🌐 Transfer Antar Bank")
+                                    print(" [3] 📱 Top Up E-Wallet")
+                                    print(" [4] < Kembali")
                                     print()
                                     print("══════════════════════════════════════════════")
                                     print()
-                                    bank = input("➜ Pilih Bank : ")
+                                    pilihan_trasnfer = input("➜  Pilih menu : ")
+                                    if pilihan_trasnfer == "3":
+                                            clear()
+                                            loopwallet = True
+                                            while loopwallet:
+                                                print("╔══════════════════════════════════════════════╗")
+                                                print("║                ➕ TOP UP E-WALLET            ║")
+                                                print("╚══════════════════════════════════════════════╝")
+                                                print()
+                                                print("> Pilih E-Wallet Tujuan Anda")
+                                                print("[1] DANA")
+                                                print("[2] GoPay")
+                                                print("[3] ShopeePay")
+                                                print("[4] OVO")
+                                                print("[5] < Kembali")
+                                                print()
+                                                print("══════════════════════════════════════════════")
+                                                print()
+                                                ewallet = input("➜ Pilih E-Wallet : ")
+                                                if ewallet == "1":
+                                                        clear()
+                                                        print("╔══════════════════════════════════════════════╗")
+                                                        print("║                   TOP UP DANA                ║")
+                                                        print("╚══════════════════════════════════════════════╝")
+                                                        print()
+                                                        print("📱 Masukkan nomor DANA tujuan")
+                                                        print("Pastikan nomor yang dimasukkan sudah benar.")
+                                                        print()
+                                                        print("══════════════════════════════════════════════")
+                                                        nomer_dana = input("➜ Masukan Nomor : ")
+                                                        if nomer_dana in data_nomer_ewallet:
+                                                            nama_tujuan = data_nomer_ewallet[nomer_dana]
+                                                            time.sleep(1)
+                                                            print()
+                                                            print(Fore.GREEN +"> NOMER DITEMUKAN")
+                                                            print("💡 Ketentuan Top Up Minimal top up Rp 10.000")
+                                                            nominal_dana = int(input("➜ Masukan Nominal Transfer :"))                                                 
+                                                            if nominal_dana >= 10000:
+                                                                    time.sleep(1)
+                                                                    clear()
+                                                                    print("╔══════════════════════════════════════════════╗")
+                                                                    print("║             📋 KONFIRMASI TOP UP             ║")
+                                                                    print("╚══════════════════════════════════════════════╝")
+                                                                    print()
+                                                                    print("   E-Wallet      : GoPay")
+                                                                    print(f"👤 Nama Tujuan   : {nama_tujuan}")
+                                                                    print(f"📱 Nomor Tujuan  : {nomer_dana}")
+                                                                    print(f"💰 Nominal Top Up: Rp {nominal_dana:,}")
+                                                                    print()
+                                                                    print("══════════════════════════════════════════════")
+                                                                    print("! Pastikan data tujuan sudah benar.")
+                                                                    print("! Transaksi yang berhasil tidak dapat dibatalkan.")
+                                                                    print("══════════════════════════════════════════════")
+                                                                    print()
+                                                                    print("[1] ✅ Konfirmasi")
+                                                                    print("[2] ❌ Batal")
+                                                                    print()
+                                                                    konfirmasi = input("➜ Masukan Pilihan : ")
+                                                                    if konfirmasi == "1":
+                                                                        time.sleep(3)
+                                                                        clear()
+                                                                        data_user["usersaldo1"] -= nominal_dana
+                                                                        print("")
+                                                                        print("==========================================")
+                                                                        print("TRANSAKSI BERHASIL".center(40))
+                                                                        print("==========================================")
+                                                                        print("")
+                                                                        print(f"Kirim Ke    : {nama_tujuan}")
+                                                                        print(f"No. Tujuan  : {nomer_dana}")
+                                                                        print(f"Nominal     : Rp{nominal_dana:,}")
+                                                                        print("")
+                                                                        print("------------------------------------------")
+                                                                        print(f"Sisa Saldo Anda: Rp {data_user['usersaldo1']:,}".center(40))
+                                                                        print("==========================================")
+                                                                        print("> Ketik apapun Untuk Kembali ke Menu Utama")
+                                                                        print("")
+                                                                        input("➜  Masukan Pilihan : " )
+                                                                    else:
+                                                                         clear() 
+                                                                         print(Fore.RED + "! Transaksi dibatalkan")
+                                                                         time.sleep(1)
+                                                                         break
+                                                            else:
+                                                                clear()
+                                                                print(Fore.RED + "! Masukan nominal dengan valid")
+                                                                time.sleep(1)
+                                                        else:
+                                                             clear()
+                                                             print(Fore.RED + "! Nomer tidak ditemukan")
+                                                             time.sleep(1)
+
+                                                elif ewallet == "5":
+                                                     clear()
+                                                     break
+                                                else:
+                                                    clear()
+                                                    print(Fore.RED + "! Masukan pilihan dengan valid")
+                                                    time.sleep(1)
+                                                                        
+                                                                        
+
+
+                                    elif pilihan_trasnfer == "2":
+                                        print("╔══════════════════════════════════════════════╗")
+                                        print("║            🌐 TRANSFER ANTAR BANK           ║")
+                                        print("╚══════════════════════════════════════════════╝")
+                                        print()
+                                        print("Pilih Bank:")
+                                        print()
+                                        print("[1] BCA")
+                                        print("[2] BRI")
+                                        print("[3] MANDIRI")
+                                        print()
+                                        print("══════════════════════════════════════════════")
+                                        print()
+                                        bank = input("➜ Pilih Bank : ")
+
+                                    elif pilihan_trasnfer == "4":
+                                         clear()
+                                         break
+                                        
+                                    else:
+                                        clear()
+                                        print(Fore.RED + "! Masukan pilihan dengan valid")
+                                        time.sleep(1)
+                                         
+                        else:
+                             clear()
+                             print(Fore.RED + "! Masukan pilihan dengan valid")
+                             time.sleep(1)
+
+
                                 
-                            
-
-
-                            
-                            
-                    
-                             
+                                
+                        
+                                
             elif inputlogin_username != data_user["username1"] and inputlogin_password == data_user["password1"]:
+                clear()
                 print(Fore.RED + "! Username Salah" + Style.RESET_ALL)
             elif inputlogin_username == data_user["username1"] and inputlogin_password != data_user["password1"]:
+                clear()
                 print(Fore.RED + "! Password Salah")
-        elif inputfirst == "2":
-            break
-        else:
-            print(Fore.RED + "! Masukan pilihan dengan valid")
-            break
+    elif inputfirst == "2":
+        break
+    else:
+        print(Fore.RED + "! Masukan pilihan dengan valid")
+            
