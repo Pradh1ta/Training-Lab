@@ -471,110 +471,146 @@
 
 
 #====================================================================================
-import os
-import time
-def clear():
-    os.system('cls' if os.name == "nt" else 'clear')
+
+# import os
+# import time
+# def clear():
+#     os.system('cls' if os.name == "nt" else 'clear')
 
 
-akun = {
-    "azhar": {
-        "pw": "123",
-        "nama": "Azhar Raafi Pradhita",
-        "id": "USR001",
-        "saldo": 1000000,
-        "pin": "1111"
-    },
-    "fahri": {
-        "pw": "456",
-        "nama": "Fahri",
-        "id": "USR002",
-        "saldo": 500000,
-        "pin": "2222"
-    }
-}
+# akun = {
+#     "azhar": {
+#         "pw": "123",
+#         "nama": "Azhar Raafi Pradhita",
+#         "id": "USR001",
+#         "saldo": 1000000,
+#         "pin": "1111"
+#     },
+#     "fahri": {
+#         "pw": "456",
+#         "nama": "Fahri",
+#         "id": "USR002",
+#         "saldo": 500000,
+#         "pin": "2222"
+#     }
+# }
 
 
-menu_utama_list = ["1. Cek Saldo", "2. Lihat ID User", "3. Transfer", "4. Keluar"]
+# menu_utama_list = ["1. Cek Saldo", "2. Lihat ID User", "3. Transfer", "4. Keluar"]
 
-def menu_utama(login_usn):
-    while True:
-        time.sleep(2)
-        clear()
-        print("="*10)
-        print("LOGIN BERHASIL")
-        print("="*10)
-        print("")
-        print(f"Selamat Datang, {akun[login_usn]['nama']}")
-        print(f"User id, {akun[login_usn]['id']}")
-        print(f"Sisa Saldo Anda, {akun[login_usn]['saldo']}")
-        print()
+# def login_menu():
+#     while True:
+#         login_usn = input("Masukan Username :")
+#         login_pw = input("Masukan  Password :")
+#         if login_usn in akun and login_pw == akun[login_usn]["pw"]:
+#             print('Login Berhasil')
+#             time.sleep(2)
+#             clear()
+#             menu_utama(login_usn)
+#         else:
+#             print('Login Gagal')
+#             time.sleep(2)
+#             clear()
+#             break
 
-        for menu in menu_utama_list:
-            print(menu)
-        input_menu = input("Masukan Pilihan : ")
-        match input_menu:
-            case "1":
-                clear()
-                print(f'Sisa Saldo Anda : {akun[login_usn]["saldo"]}')
-                time.sleep(3)
-            case "2":
-                clear()
-                print(f'Id User Anda : {akun[login_usn]["id"]}')
-                time.sleep(3)
-            case "3":
-                clear()
-                username_tujuan = input('Masukan Tujuan Transfer : ')
-                nominal = int(input('Masukan Nominal Transfer : '))
-                if username_tujuan in akun and nominal <= akun[login_usn]["saldo"] and nominal >= 10000:
-                    akun[login_usn]["saldo"] -= nominal
-                    akun[username_tujuan]["saldo"] += nominal
-                    print("Transaksi Berhasil")
-                    time.sleep(3)
-                elif username_tujuan not in akun: 
-                    print("Tujuan Tidak Ditemukan")
-                    time.sleep(2)
-                elif nominal > akun[login_usn]["saldo"]:
-                    print("saldo tidak Cukup")
-                    time.sleep(2)
-                elif nominal < 10000:
-                    print("Minimal Transaksi Rp 10.000")
-                    time.sleep(2)
-                else:
-                    print("Transaksi Gagal")
-                    time.sleep(2)
-            case "4":
-                clear()
-                print("Terima kasih telah menggunakan bank")
-                return
-            case _:
-                print('Masukan Menu yang Valid')
+# def menu_utama(login_usn):
+#     while True:
+#         time.sleep(2)
+#         clear()
+#         print("="*10)
+#         print("LOGIN BERHASIL")
+#         print("="*10)
+#         print("")
+#         print(f"Selamat Datang, {akun[login_usn]['nama']}")
+#         print(f"User id, {akun[login_usn]['id']}")
+#         print(f"Sisa Saldo Anda, {akun[login_usn]['saldo']}")
+#         print()
+
+#         for menu in menu_utama_list:
+#             print(menu)
+#         input_menu = input("Masukan Pilihan : ")
+#         match input_menu:
+#             case "1":
+#                 clear()
+#                 print(f'Sisa Saldo Anda : {akun[login_usn]["saldo"]}')
+#                 time.sleep(3)
+#             case "2":
+#                 clear()
+#                 print(f'Id User Anda : {akun[login_usn]["id"]}')
+#                 time.sleep(3)
+#             case "3":
+#                 clear()
+#                 username_tujuan = input('Masukan Tujuan Transfer : ')
+#                 nominal = int(input('Masukan Nominal Transfer : '))
+#                 if username_tujuan in akun and nominal <= akun[login_usn]["saldo"] and nominal >= 10000:
+#                     akun[login_usn]["saldo"] -= nominal
+#                     akun[username_tujuan]["saldo"] += nominal
+#                     print("Transaksi Berhasil")
+#                     time.sleep(3)
+#                 elif username_tujuan not in akun: 
+#                     print("Tujuan Tidak Ditemukan")
+#                     time.sleep(2)
+#                 elif nominal > akun[login_usn]["saldo"]:
+#                     print("saldo tidak Cukup")
+#                     time.sleep(2)
+#                 elif nominal < 10000:
+#                     print("Minimal Transaksi Rp 10.000")
+#                     time.sleep(2)
+#                 else:
+#                     print("Transaksi Gagal")
+#                     time.sleep(2)
+#             case "4":
+#                 clear()
+#                 print("Terima kasih telah menggunakan bank")
+#                 return
+#             case _:
+#                 print('Masukan Menu yang Valid')
                 
-def login_menu():
-    while True:
-        login_usn = input("Masukan Username :")
-        login_pw = input("Masukan  Password :")
-        if login_usn in akun and login_pw == akun[login_usn]["pw"]:
-            print('Login Berhasil')
-            time.sleep(2)
-            clear()
-            menu_utama(login_usn)
-        else:
-            print('Login Gagal')
-            time.sleep(2)
-            clear()
-            break
 
         
 
-login_menu()
+# login_menu()
+
+#=========================================================================
+
+# persen = 47
+# format_persen = f"{persen:.2%}"
+# print(format_persen)
+# print(type(format_persen))
+
+# plus = +47
+# format_plus = f"{plus:+}"
+# print(format_plus)
+# print(type(format_plus))
+
+# koma = 47.279301
+# format_koma = f"{koma:.2f}"
+# print(format_koma)
+# print(type(format_koma))
 
 
-                        
+# #====
+
+# inputan = float(input('Masukan Nilai : '))
+# hasil = [f"1. Nilai Asli : {inputan}", f"2. Nilai Integer : {int(inputan)}",
+#          f"3. Nilai 2 Desimal : {inputan:.2f}", f"4. Nilai Persen : {inputan:.2f}%"]
+
+# for menu_hasil in hasil:
+#     print(menu_hasil)
 
 
 
+
+inputan = float(input('Masukan Angka Pertama : '))
+inputan2 = float(input('Masukan Angka Kedua : '))
+
+hasil_menu = [f'Penjumlahan : {(inputan)+(inputan2)}',
+              f'Perkalian : {(inputan)*(inputan2)}',
+              f'Pembagian : {(inputan)/(inputan2):.2f}',
+              f'Pengurangan : {(inputan)-(inputan2)}']
                     
+for hasil in hasil_menu:
+    print(hasil)
 
 
 
